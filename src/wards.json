@@ -1,0 +1,94 @@
+[
+  { 
+		"id": 1,
+		"ward": "Chiyoda"
+	},
+  { 
+		"id": 2,
+		"ward": "Chuo"
+	},
+  { 
+		"id": 3,
+		"ward": "Minato"
+	},
+  { 
+		"id": 4,
+		"ward": "Shinjuku"
+	},
+  { 
+		"id": 5,
+		"ward": "Bunkyo"
+	},
+  { 
+		"id": 6,
+		"ward": "Taito"
+	},
+  { 
+		"id": 7,
+		"ward": "Sumida"
+	},
+  { 
+		"id": 8,
+		"ward": "Koto"
+	},
+  { 
+		"id": 9,
+		"ward": "Shinagawa"
+	},
+  { 
+		"id": 10,
+		"ward": "Meguro"
+	},
+  { 
+		"id": 11,
+		"ward": "Ota"
+	},
+  { 
+		"id": 12,
+		"ward": "Setagaya"
+	},
+  { 
+		"id": 13,
+		"ward": "Shibuya"
+	},
+  { 
+		"id": 14,
+		"ward": "Nakano"
+	},
+  { 
+		"id": 15,
+		"ward": "Suginami"
+	},
+  { 
+		"id": 16,
+		"ward": "Toshima"
+	},
+  { 
+		"id": 17,
+		"ward": "Kita"
+	},
+  { 
+		"id": 18,
+		"ward": "Arakawa"
+	},
+  { 
+		"id": 19,
+		"ward": "Itabashi"
+	},
+  { 
+		"id": 20,
+		"ward": "Nerima"
+	},
+  { 
+		"id": 21,
+		"ward": "Adachi"
+	},
+  { 
+		"id": 22,
+		"ward": "Katsushika"
+	},
+  { 
+		"id": 23,
+		"ward": "Edogawa"
+	}
+]
