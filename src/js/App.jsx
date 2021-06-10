@@ -35,7 +35,7 @@ export default function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App h-screen">
       <Navbar />
       <div className="pt-20">
         {postalCode
@@ -52,17 +52,16 @@ export default function App() {
         >
           Generate Place
         </button>
-        <div>
-          <iframe
-            title="map"
-            width="450"
-            height="250"
-            frameBorder="0"
-            style={{ border: 0 }}
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=Eiffel+Tower,Paris+France"
-            allowFullScreen
-          />
-        </div>
+
+        <iframe
+          title="map"
+          className="w-screen h-full"
+          // frameBorder="0"
+          style={{ border: 0 }}
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=Eiffel+Tower,Paris+France"
+          allowFullScreen
+        />
+
         {/* {historyArray[0] && <h3>History</h3>}
         {historyArray.map((items) => (
           <div>
