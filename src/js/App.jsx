@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/App.css';
 import postalData from '../tokyo.json';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 
 export default function App() {
   const [postalCode, setPostalCode] = useState('');
@@ -36,7 +36,7 @@ export default function App() {
 
   return (
     <div className="App h-screen">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="pt-20">
         {postalCode
           ? (
