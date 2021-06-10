@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const GlobalContext = createContext();
 
 export default function GlobalProvider({ children }) {
-  const [test, setTest] = useState(true);
+  const [test] = useState(true);
 
   return (
     <GlobalContext.Provider value={test}>
