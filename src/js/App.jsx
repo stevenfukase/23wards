@@ -37,7 +37,7 @@ export default function App() {
   return (
     <div className="App">
       <Navbar />
-      <div>
+      <div className="pt-28">
         {postalCode
           ? (
             <div>
