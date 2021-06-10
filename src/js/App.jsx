@@ -8,16 +8,16 @@ export default function App() {
   const [city, setCity] = useState('');
   const [ward, setWard] = useState('');
   const [prefecture, setPrefecture] = useState('');
-  const [historyArray, setHistoryArray] = useState([]);
+  // const [historyArray, setHistoryArray] = useState([]);
 
   const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
   const generateRandomPlace = () => {
-    if (postalCode) {
-      setHistoryArray((prevState) => [...prevState, {
-        postalCode, city, ward, prefecture,
-      }]);
-    }
+    // if (postalCode) {
+    //   setHistoryArray((prevState) => [...prevState, {
+    //     postalCode, city, ward, prefecture,
+    //   }]);
+    // }
 
     const randInt = randomIntFromInterval(1, 1718);
     const {
@@ -37,7 +37,7 @@ export default function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className="pt-28">
+      <div className="pt-20">
         {postalCode
           ? (
             <div>
@@ -52,14 +52,24 @@ export default function App() {
         >
           Generate Place
         </button>
-
-        {historyArray[0] && <h3>History</h3>}
+        <div>
+          <iframe
+            title="map"
+            width="450"
+            height="250"
+            frameBorder="0"
+            style={{ border: 0 }}
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=Eiffel+Tower,Paris+France"
+            allowFullScreen
+          />
+        </div>
+        {/* {historyArray[0] && <h3>History</h3>}
         {historyArray.map((items) => (
           <div>
             <p>{`〒${items.postalCode}`}</p>
             <p>{`${items.city ? `${items.city},` : ''} ${items.ward}, ${items.prefecture}`}</p>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
