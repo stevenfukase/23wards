@@ -12,6 +12,7 @@ export default function App() {
 
   const generateRandomPlace = () => {
     setLoading(true);
+    setMapQuery(null);
     const randInt = randomIntFromInterval(0, 22);
     setMapQuery(encodeURIComponent(wardData[randInt].ward));
     setCurrentWardObj(wardData[randInt]);
@@ -46,14 +47,16 @@ export default function App() {
 
         </div>
         {loading && <h1>Loading...</h1>}
-
-        <iframe
-          title="map"
-          className={`h-full w-full ${loading && 'hidden'}`}
-          onLoad={() => setLoading(false)}
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${mapQuery}`}
-          allowFullScreen
-        />
+        {mapQuery
+          && (
+          <iframe
+            title="map"
+            className={`h-full w-full ${loading && 'hidden'}`}
+            onLoad={() => setLoading(false)}
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${mapQuery}`}
+            allowFullScreen
+          />
+          )}
 
       </div>
     </div>
