@@ -6,13 +6,15 @@ import wards from '../wards.json';
 
 const GlobalContext = createContext();
 
+const initialState = wards;
+
 const excludePlaceReducer = (state, action) => {
   switch (action.type) {
     case 'removeItem': {
-      return { count: state.count + 1 };
+      return state.filter((id) => id !== action.payload);
     }
     case 'addItem': {
-      return { count: state.count - 1 };
+      return [...state];
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -21,7 +23,7 @@ const excludePlaceReducer = (state, action) => {
 };
 
 export function GlobalProvider({ children }) {
-  const [state, dispatch] = useReducer(excludePlaceReducer, wards);
+  const [state, dispatch] = useReducer(excludePlaceReducer, initialState);
   const value = { state, dispatch };
   return (
     <GlobalContext.Provider value={value}>
