@@ -37,8 +37,8 @@ export default function Navbar() {
 
           {wards.map((ward) => (
             <div key={ward.id}>
-              <label htmlFor="chiyoda">
-                <input type="checkbox" />
+              <label htmlFor={ward.ward}>
+                <input type="checkbox" id={ward.ward} />
                 {ward.ward}
               </label>
             </div>
