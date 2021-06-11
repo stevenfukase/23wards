@@ -22,18 +22,20 @@ export default function App() {
   return (
     <div className="h-screen">
       <Navbar />
-      <div className="pt-16 h-full grid grid-cols-2">
-        <div className="h-full">
+      <div className="pt-16 h-full grid sm:grid-cols-2">
+
+        <div className="place-self-center transform sm:-translate-y-12">
           {currentWardObj
             ? (
               <div>
-                <h1>{currentWardObj?.ward}</h1>
-                <h1>{currentWardObj?.japanese}</h1>
+                <h1 className="text-6xl">{currentWardObj?.ward}</h1>
+                <h2 className="text-4xl">{currentWardObj?.japanese}</h2>
               </div>
             )
             : <h1>Welcome to Random Tokyo Generator!</h1>}
           <button
             type="button"
+            className="focus:outline-none text-gray-500"
             onClick={generateRandomPlace}
           >
             Generate Place
