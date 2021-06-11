@@ -9,8 +9,7 @@ export default function App() {
   const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
   const generateRandomPlace = () => {
-    const randInt = randomIntFromInterval(1, 23);
-    console.log(randInt);
+    const randInt = randomIntFromInterval(0, 22);
     setCurrentWardObj(wardData[randInt]);
   };
 
