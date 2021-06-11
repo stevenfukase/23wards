@@ -15,11 +15,11 @@ export default function Navbar() {
           OPEN SIDEBAR
         </button>
 
-        <div
+        {/* <div
           className="hidden md:block md:flex md:justify-between md:bg-transparent"
         >
           SIDEBAR
-        </div>
+        </div> */}
       </nav>
       <aside
         className={`transform top-0 left-0 w-64 bg-white fixed h-full overflow-auto ease-in-out transition-all duration-300 p-6 border-r border-gray-200 z-30 ${isOpenSidebar ? 'translate-x-0' : '-translate-x-full'}`}
