@@ -6,15 +6,13 @@ import wards from '../wards.json';
 
 const GlobalContext = createContext();
 
-const initialState = wards;
+const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
-const excludePlaceReducer = (state, action) => {
+const generateReducer = (state, action) => {
   switch (action.type) {
-    case 'removeItem': {
-      return state.filter((id) => id !== action.payload);
-    }
-    case 'addItem': {
-      return [...state];
+    case 'GENERATE': {
+      const randInt = randomIntFromInterval(0, 22);
+      return wards[randInt];
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -23,7 +21,7 @@ const excludePlaceReducer = (state, action) => {
 };
 
 export function GlobalProvider({ children }) {
-  const [state, dispatch] = useReducer(excludePlaceReducer, initialState);
+  const [state, dispatch] = useReducer(generateReducer, null);
   const value = { state, dispatch };
   return (
     <GlobalContext.Provider value={value}>
@@ -32,7 +30,7 @@ export function GlobalProvider({ children }) {
   );
 }
 
-export function useWards() {
+export function useWard() {
   const context = useContext(GlobalContext);
   if (context === undefined) {
     throw new Error('useWards must be used within a GlobalProvider');

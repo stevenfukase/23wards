@@ -1,36 +1,30 @@
 import React, { useState } from 'react';
-import wards from '../wards.json';
+// import wards from '../wards.json';
+import { useWard } from './GlobalContext';
 import Navbar from './components/Navbar';
 
 export default function App() {
-  const [currentWardObj, setCurrentWardObj] = useState(null);
+  const { dispatch, state } = useWard();
   const [loading, setLoading] = useState(false);
-  const [mapQuery, setMapQuery] = useState('tokyo');
-  // const [canBeSelectedWardId, setCanBeSelectedWardId] = useState();
 
-  const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
-
-  const generateRandomPlace = () => {
+  const generateHandler = () => {
     setLoading(true);
-    setMapQuery(null);
-    const randInt = randomIntFromInterval(0, 22);
-    setMapQuery(encodeURIComponent(wards[randInt].ward));
-    setCurrentWardObj(wards[randInt]);
+    dispatch({ type: 'GENERATE' });
+    setLoading(false);
   };
 
   return (
     <div className="h-screen">
       <Navbar />
       <div className="pt-16 h-full grid sm:grid-cols-2 divide-x">
-
         <div className="place-self-center transform sm:-translate-y-12 flex flex-col items-center">
-          {!currentWardObj && <h1>Welcome to Random Tokyo Ward generator</h1>}
+          {!state && <h1>Welcome to Random Tokyo Ward generator</h1>}
 
-          {currentWardObj && !loading
+          {state
             && (
               <>
-                <h1 className="text-6xl">{currentWardObj?.ward}</h1>
-                <h2 className="text-4xl">{currentWardObj?.japanese}</h2>
+                <h1 className="text-6xl">{state.ward}</h1>
+                <h2 className="text-4xl">{state.japanese}</h2>
               </>
             )}
 
@@ -39,25 +33,26 @@ export default function App() {
             <button
               type="button"
               className="focus:outline-none text-gray-500"
-              onClick={generateRandomPlace}
+              onClick={generateHandler}
             >
               Generate Place
             </button>
             )}
 
         </div>
-        {loading && <h1>Loading...</h1>}
-        {mapQuery
+        <div>
+          {loading && <h1>Loading...</h1>}
+          {state
           && (
           <iframe
             title="map"
             className={`h-full w-full ${loading && 'hidden'}`}
-            onLoad={() => setLoading(false)}
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${mapQuery}`}
+            // className="h-full w-full"
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${encodeURIComponent(state.ward)}`}
             allowFullScreen
           />
           )}
-
+        </div>
       </div>
     </div>
   );
