@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 export default function App() {
   const [currentWardObj, setCurrentWardObj] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [mapQuery, setMapQuery] = useState('tokyo');
   // const [canBeSelectedWardId, setCanBeSelectedWardId] = useState();
 
   const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
@@ -12,13 +13,9 @@ export default function App() {
   const generateRandomPlace = () => {
     setLoading(true);
     const randInt = randomIntFromInterval(0, 22);
+    setMapQuery(encodeURIComponent(wardData[randInt].ward));
     setCurrentWardObj(wardData[randInt]);
   };
-
-  let mapQuery = 'tokyo';
-  if (currentWardObj?.ward != null) {
-    mapQuery = encodeURIComponent(currentWardObj.ward);
-  }
 
   return (
     <div className="h-screen">
