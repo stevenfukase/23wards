@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import wards from '../../wards.json';
 
 export default function Navbar() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
@@ -30,6 +31,20 @@ export default function Navbar() {
         >
           Close SIDEBAR
         </button>
+        <div>
+          <h2>Settings</h2>
+          <h3>Exclude following places</h3>
+
+          {wards.map((ward) => (
+            <div key={ward.id}>
+              <label htmlFor="chiyoda">
+                <input type="checkbox" />
+                {ward.ward}
+              </label>
+            </div>
+          ))}
+
+        </div>
       </aside>
     </>
   );

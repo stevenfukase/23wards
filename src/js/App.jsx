@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import wardData from '../wards.json';
+import wards from '../wards.json';
 import Navbar from './components/Navbar';
 
 export default function App() {
@@ -14,8 +14,8 @@ export default function App() {
     setLoading(true);
     setMapQuery(null);
     const randInt = randomIntFromInterval(0, 22);
-    setMapQuery(encodeURIComponent(wardData[randInt].ward));
-    setCurrentWardObj(wardData[randInt]);
+    setMapQuery(encodeURIComponent(wards[randInt].ward));
+    setCurrentWardObj(wards[randInt]);
   };
 
   return (
