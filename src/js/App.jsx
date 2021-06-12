@@ -5,7 +5,12 @@ import Navbar from './components/Navbar';
 export default function App() {
   const { state } = useWard();
   const [loading, setLoading] = useState(false);
-  const [currentWardObj, setCurrentWardObj] = useState();
+  const [currentWardObj, setCurrentWardObj] = useState(null);
+
+  let mapQuery = 'tokyo';
+  if (currentWardObj != null) {
+    mapQuery = encodeURIComponent(currentWardObj.ward);
+  }
 
   const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -19,7 +24,7 @@ export default function App() {
   return (
     <div className="h-screen dark:bg-gray-900">
       <Navbar />
-      <div className="pt-16 h-full grid sm:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-400">
+      <div className="pt-14 h-full grid sm:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-400">
         <div className="place-self-center transform sm:-translate-y-12 flex flex-col items-center">
           {!currentWardObj && <h1 className="dark:text-white">Welcome to Random Tokyo Ward generator</h1>}
 
@@ -41,20 +46,21 @@ export default function App() {
               Generate Place
             </button>
             )}
-
         </div>
+
         <div>
           {loading && <h1>Loading...</h1>}
-          {currentWardObj
+          {!loading
           && (
           <iframe
             title="map"
-            className={`h-full w-full ${loading && 'hidden'}`}
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${encodeURIComponent(currentWardObj.ward)}`}
+            className="h-full w-full"
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${mapQuery}`}
             allowFullScreen
           />
           )}
         </div>
+
       </div>
     </div>
   );
