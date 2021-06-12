@@ -1,5 +1,5 @@
 import React, {
-  useState, createContext, useReducer, useContext,
+  createContext, useReducer, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
 import wards from '../wards.json';
@@ -7,15 +7,13 @@ import wards from '../wards.json';
 const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  const [wardsArray] = useState(wards);
-
   const wardReducer = (state, action) => {
     switch (action.type) {
-      case 'ADD_WARD': {
-        return wardsArray;
-      }
       case 'REMOVE_WARD': {
-        return wardsArray;
+        return state.filter((item) => item.id === action.payload);
+      }
+      case 'ADD_WARD': {
+        return state.push(wards.find((item) => item.id === action.payload));
       }
       default: {
         throw new Error(`Unhandled action type: ${action.type}`);
@@ -23,7 +21,7 @@ export function GlobalProvider({ children }) {
     }
   };
 
-  const [state, dispatch] = useReducer(wardReducer, null);
+  const [state, dispatch] = useReducer(wardReducer, wards);
   const value = { state, dispatch };
   return (
     <GlobalContext.Provider value={value}>
