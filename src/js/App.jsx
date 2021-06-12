@@ -24,12 +24,10 @@ export default function App() {
   return (
     <div className="h-screen dark:bg-gray-900">
       <Navbar />
-      <div className="pt-14 h-full grid sm:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-400">
+      <div className="pt-14 h-full grid grid-rows-2 sm:grid-cols-2 sm:grid-rows-1">
 
         <div>
-          {loading && <h1>Loading...</h1>}
-          {!loading
-          && (
+          {!loading && (
           <iframe
             title="map"
             className="h-full w-full filter dark:invert"
@@ -40,7 +38,7 @@ export default function App() {
         </div>
 
         <div className="place-self-center flex flex-col items-center transform sm:-translate-y-12 sm:order-first">
-          {!currentWardObj && <h1 className="dark:text-white">Welcome to Random Tokyo Ward generator</h1>}
+          {!currentWardObj && <h1 className="dark:text-white">Welcome to Tokyo Ward Generator</h1>}
 
           {currentWardObj
             && (

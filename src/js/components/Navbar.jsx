@@ -32,9 +32,9 @@ export default function Navbar() {
           <FontAwesomeIcon icon={faBars} />
         </button>
         <div
-          className="hidden md:block md:flex md:justify-between md:bg-transparent"
+          className="hidden sm:block sm:justify-between sm:bg-transparent"
         >
-          <p className="text-gray-500 dark:text-gray-400">By STEVEN FUKASE</p>
+          <p className="text-gray-500 dark:text-gray-400">Tokyo Ward Generator</p>
         </div>
       </nav>
       <aside
@@ -48,8 +48,8 @@ export default function Navbar() {
           <FontAwesomeIcon icon={faTimes} />
         </button>
         <div>
-          <h2 className="mt-2 text-2xl font-bold">Settings</h2>
-          <h3 className="mt-2 text-lg font-bold">Exclude:</h3>
+          <h2 className="mt-3 text-2xl font-bold">Settings</h2>
+          <h3 className="mt-3 text-lg font-bold">Exclude:</h3>
 
           {wards.map((ward) => (
             <div key={ward.id}>
@@ -68,9 +68,22 @@ export default function Navbar() {
               </label>
             </div>
           ))}
-          <h3 className="mt-2 text-lg font-bold">Dark Mode</h3>
+          <h3 className="mt-3 text-lg font-bold">Dark Mode</h3>
           <p className="text-gray-800 dark:text-gray-200">Can be enabled from your system</p>
           <p className="text-gray-800 dark:text-gray-200">&#40;e.g., From Control Center on the Mac&#41;</p>
+          <h3 className="mt-3 text-lg font-bold">About</h3>
+          <div className="text-xs text-gray-600 dark:text-gray-400">
+            Created by
+            {' '}
+            <a
+              className="text-green-600 hover:text-green-500 dark:text-green-300 dark:hover:text-green-200"
+              href="https://stevenfukase.com"
+            >
+              STEVEN FUKASE
+            </a>
+            <br />
+            with React
+          </div>
         </div>
       </aside>
     </>
