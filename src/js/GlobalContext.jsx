@@ -12,12 +12,10 @@ export function GlobalProvider({ children }) {
   const wardReducer = (state, action) => {
     switch (action.type) {
       case 'ADD_WARD': {
-        const randInt = randomIntFromInterval(0, wardsArray.length - 1);
-        return wardsArray[randInt];
+        return wardsArray;
       }
       case 'REMOVE_WARD': {
-        const randInt = randomIntFromInterval(0, wardsArray.length - 1);
-        return wardsArray[randInt];
+        return wardsArray;
       }
       default: {
         throw new Error(`Unhandled action type: ${action.type}`);

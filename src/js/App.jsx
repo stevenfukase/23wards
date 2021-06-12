@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import wards from '../wards.json';
 import { useWard } from './GlobalContext';
 import Navbar from './components/Navbar';
 
