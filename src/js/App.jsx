@@ -4,12 +4,16 @@ import { useWard } from './GlobalContext';
 import Navbar from './components/Navbar';
 
 export default function App() {
-  const { dispatch, state } = useWard();
+  const { state } = useWard();
   const [loading, setLoading] = useState(false);
+  const [currentWardObj, setCurrentWardObj] = useState({});
+
+  const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
   const generateHandler = () => {
     setLoading(true);
-    dispatch({ type: 'GENERATE' });
+    const randInt = randomIntFromInterval(0, state.length - 1);
+    setCurrentWardObj(state[randInt]);
     setLoading(false);
   };
 
@@ -18,13 +22,13 @@ export default function App() {
       <Navbar />
       <div className="pt-16 h-full grid sm:grid-cols-2 divide-x">
         <div className="place-self-center transform sm:-translate-y-12 flex flex-col items-center">
-          {!state && <h1>Welcome to Random Tokyo Ward generator</h1>}
+          {!currentWardObj && <h1>Welcome to Random Tokyo Ward generator</h1>}
 
-          {state
+          {currentWardObj
             && (
               <>
-                <h1 className="text-6xl">{state.ward}</h1>
-                <h2 className="text-4xl">{state.japanese}</h2>
+                <h1 className="text-6xl">{currentWardObj.ward}</h1>
+                <h2 className="text-4xl">{currentWardObj.japanese}</h2>
               </>
             )}
 
@@ -42,7 +46,7 @@ export default function App() {
         </div>
         <div>
           {loading && <h1>Loading...</h1>}
-          {state
+          {currentWardObj
           && (
           <iframe
             title="map"

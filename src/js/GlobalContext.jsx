@@ -6,14 +6,16 @@ import wards from '../wards.json';
 
 const GlobalContext = createContext();
 
-const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
-
 export function GlobalProvider({ children }) {
   const [wardsArray] = useState(wards);
 
   const wardReducer = (state, action) => {
     switch (action.type) {
-      case 'GENERATE': {
+      case 'ADD_WARD': {
+        const randInt = randomIntFromInterval(0, wardsArray.length - 1);
+        return wardsArray[randInt];
+      }
+      case 'REMOVE_WARD': {
         const randInt = randomIntFromInterval(0, wardsArray.length - 1);
         return wardsArray[randInt];
       }
