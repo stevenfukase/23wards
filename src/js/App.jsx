@@ -25,7 +25,21 @@ export default function App() {
     <div className="h-screen dark:bg-gray-900">
       <Navbar />
       <div className="pt-14 h-full grid sm:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-400">
-        <div className="place-self-center transform sm:-translate-y-12 flex flex-col items-center">
+
+        <div>
+          {loading && <h1>Loading...</h1>}
+          {!loading
+          && (
+          <iframe
+            title="map"
+            className="h-full w-full filter dark:invert"
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${mapQuery}`}
+            allowFullScreen
+          />
+          )}
+        </div>
+
+        <div className="place-self-center flex flex-col items-center transform sm:-translate-y-12 sm:order-first">
           {!currentWardObj && <h1 className="dark:text-white">Welcome to Random Tokyo Ward generator</h1>}
 
           {currentWardObj
@@ -46,19 +60,6 @@ export default function App() {
               Generate Place
             </button>
             )}
-        </div>
-
-        <div>
-          {loading && <h1>Loading...</h1>}
-          {!loading
-          && (
-          <iframe
-            title="map"
-            className="h-full w-full filter dark:invert"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${mapQuery}`}
-            allowFullScreen
-          />
-          )}
         </div>
 
       </div>
