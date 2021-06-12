@@ -18,7 +18,6 @@ export default function App() {
 
   return (
     <div className="h-screen">
-      {JSON.stringify(state)}
       <Navbar />
       <div className="pt-16 h-full grid sm:grid-cols-2 divide-x">
         <div className="place-self-center transform sm:-translate-y-12 flex flex-col items-center">
@@ -51,7 +50,6 @@ export default function App() {
           <iframe
             title="map"
             className={`h-full w-full ${loading && 'hidden'}`}
-            // className="h-full w-full"
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${encodeURIComponent(currentWardObj.ward)}`}
             allowFullScreen
           />
