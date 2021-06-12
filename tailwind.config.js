@@ -6,6 +6,7 @@ module.exports = {
   },
   variants: {
     extend: {
+      invert: ['dark'],
     },
   },
   plugins: [],
