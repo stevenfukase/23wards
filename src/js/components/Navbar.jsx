@@ -34,11 +34,11 @@ export default function Navbar() {
         <div
           className="hidden md:block md:flex md:justify-between md:bg-transparent"
         >
-          <p className="text-gray-400">By STEVEN FUKASE</p>
+          <p className="text-gray-500 dark:text-gray-400">By STEVEN FUKASE</p>
         </div>
       </nav>
       <aside
-        className={`transform top-0 left-0 w-64 bg-white text-gray-700 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r border-gray-200 z-30 ${isOpenSidebar ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`transform top-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-gray-200 dark:border-gray-400 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r z-30 ${isOpenSidebar ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <button
           type="button"
@@ -55,7 +55,7 @@ export default function Navbar() {
             <div key={ward.id}>
               <label
                 htmlFor={ward.ward}
-                className="inline-flex items-center"
+                className="inline-flex items-center text-gray-800 dark:text-gray-200"
               >
                 <input
                   type="checkbox"
@@ -68,7 +68,9 @@ export default function Navbar() {
               </label>
             </div>
           ))}
-
+          <h3 className="mt-2 text-lg font-bold">Dark Mode</h3>
+          <p className="text-gray-800 dark:text-gray-200">Can be enabled from your system</p>
+          <p className="text-gray-800 dark:text-gray-200">&#40;e.g., From Control Center on the Mac&#41;</p>
         </div>
       </aside>
     </>
