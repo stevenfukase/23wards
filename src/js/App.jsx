@@ -18,6 +18,7 @@ export default function App() {
 
   return (
     <div className="h-screen">
+      {JSON.stringify(state)}
       <Navbar />
       <div className="pt-16 h-full grid sm:grid-cols-2 divide-x">
         <div className="place-self-center transform sm:-translate-y-12 flex flex-col items-center">
