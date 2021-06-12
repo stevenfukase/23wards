@@ -54,7 +54,7 @@ export default function App() {
           && (
           <iframe
             title="map"
-            className="h-full w-full filter dark:invert-0"
+            className="h-full w-full filter dark:invert"
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${mapQuery}`}
             allowFullScreen
           />

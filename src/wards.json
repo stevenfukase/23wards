@@ -1,117 +1,117 @@
 [
   { 
 		"id": 0,
-		"ward": "Chiyoda-ku",
+		"ward": "Chiyoda",
 		"japanese": "千代田区"
 	},
   { 
 		"id": 1,
-		"ward": "Chuo-ku",
+		"ward": "Chuo",
 		"japanese": "中央区"
 	},
   { 
 		"id": 2,
-		"ward": "Minato-ku",
+		"ward": "Minato",
 		"japanese": "港区"
 	},
   { 
 		"id": 3,
-		"ward": "Shinjuku-ku",
+		"ward": "Shinjuku",
 		"japanese": "新宿区"
 	},
   { 
 		"id": 4,
-		"ward": "Bunkyo-ku",
+		"ward": "Bunkyo",
 		"japanese": "文京区"
 	},
   { 
 		"id": 5,
-		"ward": "Taito-ku",
+		"ward": "Taito",
 		"japanese": "台東区"
 	},
   { 
 		"id": 6,
-		"ward": "Sumida-ku",
+		"ward": "Sumida",
 		"japanese": "墨田区"
 	},
   { 
 		"id": 7,
-		"ward": "Koto-ku",
+		"ward": "Koto",
 		"japanese": "江東区"
 	},
   { 
 		"id": 8,
-		"ward": "Shinagawa-ku",
+		"ward": "Shinagawa",
 		"japanese": "品川区"
 	},
   { 
 		"id": 9,
-		"ward": "Meguro-ku",
+		"ward": "Meguro",
 		"japanese": "目黒区"
 	},
   { 
 		"id": 10,
-		"ward": "Ota-ku",
+		"ward": "Ota",
 		"japanese": "大田区"
 	},
   { 
 		"id": 11,
-		"ward": "Setagaya-ku",
+		"ward": "Setagaya",
 		"japanese": "世田谷区"
 	},
   { 
 		"id": 12,
-		"ward": "Shibuya-ku",
+		"ward": "Shibuya",
 		"japanese": "渋谷区"
 	},
   { 
 		"id": 13,
-		"ward": "Nakano-ku",
+		"ward": "Nakano",
 		"japanese": "中野区"
 	},
   { 
 		"id": 14,
-		"ward": "Suginami-ku",
+		"ward": "Suginami",
 		"japanese": "杉並区"
 	},
   { 
 		"id": 15,
-		"ward": "Toshima-ku",
+		"ward": "Toshima",
 		"japanese": "豊島区"
 	},
   { 
 		"id": 16,
-		"ward": "Kita-ku",
+		"ward": "Kita",
 		"japanese": "北区"
 	},
   { 
 		"id": 17,
-		"ward": "Arakawa-ku",
+		"ward": "Arakawa",
 		"japanese": "荒川区"
 	},
   { 
 		"id": 18,
-		"ward": "Itabashi-ku",
+		"ward": "Itabashi",
 		"japanese": "板橋区"
 	},
   { 
 		"id": 19,
-		"ward": "Nerima-ku",
+		"ward": "Nerima",
 		"japanese": "練馬区"
 	},
   { 
 		"id": 20,
-		"ward": "Adachi-ku",
+		"ward": "Adachi",
 		"japanese": "足立区"
 	},
   { 
 		"id": 21,
-		"ward": "Katsushika-ku",
+		"ward": "Katsushika",
 		"japanese": "葛飾区"
 	},
   { 
 		"id": 22,
-		"ward": "Edogawa-ku",
+		"ward": "Edogawa",
 		"japanese": "江戸川区"
 	}
 ]
