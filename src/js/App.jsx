@@ -17,17 +17,17 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen dark:bg-gray-900">
       <Navbar />
-      <div className="pt-16 h-full grid sm:grid-cols-2 divide-x">
+      <div className="pt-16 h-full grid sm:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-400">
         <div className="place-self-center transform sm:-translate-y-12 flex flex-col items-center">
-          {!currentWardObj && <h1>Welcome to Random Tokyo Ward generator</h1>}
+          {!currentWardObj && <h1 className="dark:text-white">Welcome to Random Tokyo Ward generator</h1>}
 
           {currentWardObj
             && (
               <>
-                <h1 className="text-6xl">{currentWardObj.ward}</h1>
-                <h2 className="text-4xl">{currentWardObj.japanese}</h2>
+                <h1 className="text-6xl dark:text-white">{currentWardObj.ward}</h1>
+                <h2 className="text-4xl dark:text-white">{currentWardObj.japanese}</h2>
               </>
             )}
 
@@ -35,7 +35,7 @@ export default function App() {
             && (
             <button
               type="button"
-              className="focus:outline-none text-gray-500"
+              className="focus:outline-none text-gray-500 dark:text-gray-400"
               onClick={generateHandler}
             >
               Generate Place
