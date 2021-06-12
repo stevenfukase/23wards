@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="flex fixed w-full items-center justify-between px-6 h-14 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-b border-gray-200 dark:border-gray-400"
+        className="flex fixed w-full items-center justify-between px-6 h-14 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-white border-b border-gray-300 dark:border-gray-400"
       >
 
         <button

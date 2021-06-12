@@ -22,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen dark:bg-gray-900">
+    <div className="h-screen bg-gray-100 dark:bg-gray-900">
       <Navbar />
       <div className="pt-14 h-full grid grid-rows-2 sm:grid-cols-2 sm:grid-rows-1">
 
@@ -44,7 +44,7 @@ export default function App() {
             && (
               <>
                 <h1 className="text-6xl dark:text-white">{currentWardObj.ward}</h1>
-                <h2 className="text-4xl dark:text-white">{currentWardObj.japanese}</h2>
+                <h2 className="text-4xl dark:text-white mt-3">{currentWardObj.japanese}</h2>
               </>
             )}
 
@@ -52,7 +52,7 @@ export default function App() {
             && (
             <button
               type="button"
-              className="focus:outline-none text-gray-500 dark:text-gray-400"
+              className="focus:outline-none text-gray-500 dark:text-gray-400 hover:text-green-500 dark:hover:text-green-200"
               onClick={generateHandler}
             >
               Generate Place
