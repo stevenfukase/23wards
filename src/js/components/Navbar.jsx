@@ -3,18 +3,16 @@ import wards from '../../wards.json';
 import { useWard } from '../GlobalContext';
 
 export default function Navbar() {
-  const { state, dispatch } = useWard();
+  const { dispatch } = useWard();
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 
   const handleCheckboxChange = (e) => {
     if (e.target.checked === true) {
       dispatch({ type: 'REMOVE_WARD', payload: e.target.value });
-      console.log(state);
     }
 
     if (e.target.checked === false) {
       dispatch({ type: 'ADD_WARD', payload: e.target.value });
-      console.log(state);
     }
   };
 

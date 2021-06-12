@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 export default function App() {
   const { state } = useWard();
   const [loading, setLoading] = useState(false);
-  const [currentWardObj, setCurrentWardObj] = useState({});
+  const [currentWardObj, setCurrentWardObj] = useState();
 
   const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -51,7 +51,7 @@ export default function App() {
             title="map"
             className={`h-full w-full ${loading && 'hidden'}`}
             // className="h-full w-full"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${encodeURIComponent(state.ward)}`}
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q=${encodeURIComponent(currentWardObj.ward)}`}
             allowFullScreen
           />
           )}

@@ -10,10 +10,14 @@ export function GlobalProvider({ children }) {
   const wardReducer = (state, action) => {
     switch (action.type) {
       case 'REMOVE_WARD': {
-        return state.filter((item) => item.id === action.payload);
+        const newState = state.filter((item) => item.id !== action.payload);
+        console.log(newState);
+        return newState;
       }
       case 'ADD_WARD': {
-        return state.push(wards.find((item) => item.id === action.payload));
+        const newState = state.push(wards.find((item) => item.id === action.payload));
+        console.log(newState);
+        return newState;
       }
       default: {
         throw new Error(`Unhandled action type: ${action.type}`);
