@@ -1,3 +1,6 @@
+use yew::{function_component, html};
+
+#[function_component(SideBar)]
 pub fn side_bar() -> Html {
     html! {
       <aside
