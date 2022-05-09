@@ -1,4 +1,3 @@
-use super::mobile_nav;
 use super::navbar;
 use yew::{function_component, html, Children, Properties};
 
@@ -16,7 +15,6 @@ pub fn layout(props: &LayoutProps) -> Html {
         <main>
           {props.children.clone()}
         </main>
-        <mobile_nav::MobileNav />
       </>
     }
 }
