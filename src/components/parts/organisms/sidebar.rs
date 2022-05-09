@@ -1,4 +1,4 @@
-use yew::{function_component, html};
+use yew::{function_component, html, Callback};
 use yew_octicons::{Icon, IconKind};
 
 #[function_component(SideBar)]
@@ -10,6 +10,7 @@ pub fn side_bar() -> Html {
         <button
           type="button"
           class="text-3xl focus:outline-none"
+          onclick={Callback::from(|_| (panic!("test")))}
         >
           {Icon::new(IconKind::X)}
         </button>
@@ -41,17 +42,17 @@ pub fn side_bar() -> Html {
             {"(e.g., From Control Center on the Mac)"}
           </p>
           <h3 class="mt-3 text-lg font-bold">{"About"}</h3>
-          <div class="text-xs text-gray-600 dark:text-gray-400">
+          <p class="text-xs text-gray-600 dark:text-gray-400">
             {"Created by "}
             <a
-            class="text-green-600 hover:text-green-500 dark:text-green-300 dark:hover:text-green-200"
-            href="https://stevenfukase.com"
+              class="text-green-600 hover:text-green-500 dark:text-green-300 dark:hover:text-green-200"
+              href="https://stevenfukase.com"
             >
-              {"STEVEN FUKASE"}
+              { "STEVEN FUKASE" }
             </a>
             <br />
-            {"with Rust"}
-          </div>
+            { "with the Rust and Yew" }
+          </p>
         </div>
       </aside>
     }
