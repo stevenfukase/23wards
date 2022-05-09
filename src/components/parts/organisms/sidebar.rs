@@ -1,16 +1,18 @@
 use yew::{function_component, html};
+use yew_octicons::{Icon, IconKind};
 
 #[function_component(SideBar)]
 pub fn side_bar() -> Html {
     html! {
       <aside
-      class="transform top-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-gray-200 dark:border-gray-400 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r z-30 { if isOpenSidebar ? 'translate-x-0' : '-translate-x-full'}"
+      class="transform top-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-gray-200 dark:border-gray-400 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r z-30 translate-x-0"
+    //   class="transform top-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-gray-200 dark:border-gray-400 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r z-30 { if isOpenSidebar ? 'translate-x-0' : '-translate-x-full'}"
       >
     <button
       type="button"
       class="text-3xl focus:outline-none"
     >
-      // <FontAwesomeIcon icon={faTimes} />
+        {Icon::new(IconKind::X)}
     </button>
     <div>
       <h2 class="mt-3 text-2xl font-bold">{"Settings"}</h2>

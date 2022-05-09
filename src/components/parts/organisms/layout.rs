@@ -1,4 +1,4 @@
-use super::navbar;
+use super::{navbar, sidebar};
 use yew::{function_component, html, Children, Properties};
 
 #[derive(Properties, PartialEq)]
@@ -12,6 +12,7 @@ pub fn layout(props: &LayoutProps) -> Html {
     html! {
       <>
         <navbar::Navbar />
+        <sidebar::SideBar />
         <main>
           {props.children.clone()}
         </main>
