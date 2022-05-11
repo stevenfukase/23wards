@@ -1,5 +1,5 @@
 use super::{navbar, sidebar};
-use yew::{function_component, html, Children, Properties};
+use yew::{function_component, html, use_state, Children, Properties};
 
 #[derive(Properties, PartialEq)]
 pub struct LayoutProps {
@@ -9,10 +9,12 @@ pub struct LayoutProps {
 
 #[function_component(Layout)]
 pub fn layout(props: &LayoutProps) -> Html {
+    let is_sidebar_open = use_state(|| false);
+
     html! {
       <>
         <navbar::Navbar />
-        <sidebar::SideBar />
+        <sidebar::SideBar is_open={*is_sidebar_open}/>
         <main>
           {props.children.clone()}
         </main>
