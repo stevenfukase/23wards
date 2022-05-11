@@ -1,4 +1,5 @@
-use yew::{function_component, html, Callback};
+use crate::constants::wards;
+use yew::{function_component, html, Callback, Html};
 use yew_octicons::{Icon, IconKind};
 
 #[function_component(SideBar)]
@@ -17,23 +18,24 @@ pub fn side_bar() -> Html {
         <div>
           <h2 class="mt-3 text-2xl font-bold">{ "Settings" }</h2>
           <h3 class="mt-3 text-lg font-bold">{ "Exclude:" }</h3>
-            // {wards.map((ward) => (
-            //   <div key={ward.id}>
-            //     <label
-            //       htmlFor={ward.ward}
-            //       class="inline-flex items-center text-gray-800 dark:text-gray-200"
-            //     >
-            //       <input
-            //         type="checkbox"
-            //         class="mr-1 h-4 w-4"
-            //         id={ward.ward}
-            //         value={ward.id}
-            //         onChange={handleCheckboxChange}
-            //       />
-            //       {ward.ward}
-            //     </label>
-            //   </div>
-            // ))}
+          {wards::WARDS.into_iter().map(|ward| {
+            html! {
+              <div>
+                <label
+                  htmlFor={ward.ward}
+                  class="inline-flex items-center text-gray-800 dark:text-gray-200"
+                >
+                  <input
+                    type="checkbox"
+                    class="mr-1 h-4 w-4"
+                    id={ward.ward}
+                    value={ward.id}
+                    // onChange={handleCheckboxChange}
+                  />
+                  {ward.ward}
+                </label>
+              </div>}
+          }).collect::<Html>() }
           <h3 class="mt-3 text-lg font-bold">{"Dark Mode"}</h3>
           <p class="text-gray-800 dark:text-gray-200">
             {"Can be enabled from your system"}
