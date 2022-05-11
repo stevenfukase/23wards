@@ -1,10 +1,10 @@
-struct Ward {
-    id: u8,
-    ward: &str,
-    japanese: &str,
+pub struct Ward<'a> {
+    pub id: u8,
+    pub ward: &'a str,
+    pub japanese: &'a str,
 }
 
-pub const WARDS: [Ward;23]  = [
+pub const WARDS: [Ward; 23] = [
     Ward {
         id: 0,
         ward: "Chiyoda-ku",
@@ -119,5 +119,5 @@ pub const WARDS: [Ward;23]  = [
         id: 22,
         ward: "Edogawa-ku",
         japanese: "江戸川区",
-    }
+    },
 ];
