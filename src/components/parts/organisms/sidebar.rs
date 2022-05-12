@@ -1,5 +1,5 @@
 use crate::constants::wards;
-use yew::{function_component, html, Callback, Html, Properties};
+use yew::{classes, function_component, html, Callback, Html, Properties};
 use yew_octicons::{Icon, IconKind};
 
 #[derive(Properties, PartialEq)]
@@ -7,12 +7,12 @@ pub struct SidebarProps {
     #[prop_or(false)]
     pub is_open: bool,
 }
-
 #[function_component(SideBar)]
 pub fn side_bar(props: &SidebarProps) -> Html {
+    let sidebar_class = String::from("transform top-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-gray-200 dark:border-gray-400 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r z-30");
     html! {
       <aside
-        class="transform top-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-gray-200 dark:border-gray-400 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r z-30 { if isOpenSidebar ? 'translate-x-0' : '-translate-x-full'}"
+        class={classes!(sidebar_class, props.is_open.then(|| { if props.is_open { "translate-x-0" } else { "-translate-x-full" } }))}
       >
         <button
           type="button"
