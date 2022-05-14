@@ -21,7 +21,7 @@ pub fn side_bar(props: &SidebarProps) -> Html {
         <button
           type="button"
           class="text-3xl focus:outline-none"
-          onclick={Callback::from(|_| (panic!("test")))}
+          onclick={props.on_close}
         >
           {Icon::new(IconKind::X)}
         </button>

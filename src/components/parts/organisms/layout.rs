@@ -12,6 +12,7 @@ pub fn layout(props: &LayoutProps) -> Html {
     let is_sidebar_open = use_state(|| false);
     let on_sidebar_close = {
         let is_sidebar_open = is_sidebar_open.clone();
+        println!("{:?}", is_sidebar_open);
         Callback::from(move |_| is_sidebar_open.set(!*is_sidebar_open))
     };
 
