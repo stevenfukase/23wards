@@ -6,6 +6,7 @@ use yew_octicons::{Icon, IconKind};
 pub struct SidebarProps {
     #[prop_or(false)]
     pub is_open: bool,
+    pub on_close: 
 }
 #[function_component(SideBar)]
 pub fn side_bar(props: &SidebarProps) -> Html {
