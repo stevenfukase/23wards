@@ -3,7 +3,7 @@ mod constants;
 mod pages;
 
 use components::parts::organisms::layout::Layout;
-use yew::{function_component, html, Html};
+use yew::{function_component, html, ContextProvider, Html};
 use yew_router::{BrowserRouter, Routable, Switch};
 
 #[derive(Clone, Routable, PartialEq)]
@@ -25,11 +25,13 @@ fn switch(routes: &Routes) -> Html {
 #[function_component(App)]
 fn app() -> Html {
     html! {
-      <Layout>
-        <BrowserRouter>
+      <ContextProvider>
+        <Layout>
+          <BrowserRouter>
           <Switch<Routes> render={Switch::render(switch)} />
-        </BrowserRouter>
-      </Layout>
+          </BrowserRouter>
+        </Layout>
+      </ContextProvider>
     }
 }
 
