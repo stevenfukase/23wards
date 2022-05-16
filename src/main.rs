@@ -10,10 +10,6 @@ use yew_router::{BrowserRouter, Routable, Switch};
 enum Routes {
     #[at("/")]
     Home,
-    #[at("/profile")]
-    Profile,
-    #[at("login")]
-    Login,
     #[not_found]
     #[at("/404")]
     NotFound,
@@ -22,8 +18,6 @@ enum Routes {
 fn switch(routes: &Routes) -> Html {
     match routes {
         Routes::Home => html! { <pages::index::IndexPage /> },
-        Routes::Profile => html! { <pages::profile::ProfilePage /> },
-        Routes::Login => html! { <pages::login::LoginPage />},
         Routes::NotFound => html! {<pages::not_found::NotFoundPage />},
     }
 }
