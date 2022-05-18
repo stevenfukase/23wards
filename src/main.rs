@@ -22,10 +22,15 @@ fn switch(routes: &Routes) -> Html {
     }
 }
 
+#[derive(Clone, Debug, PartialEq)]
+struct Context {
+    currentWard: u8,
+}
+
 #[function_component(App)]
 fn app() -> Html {
     html! {
-      <ContextProvider>
+      <ContextProvider<Context> context={}>
         <Layout>
           <BrowserRouter>
           <Switch<Routes> render={Switch::render(switch)} />
