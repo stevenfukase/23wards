@@ -33,13 +33,13 @@ fn app() -> Html {
     let context = use_memo(|_| CurrentWard { ward_id: 0 }, ());
 
     html! {
-      <ContextProvider<CurrentWard> context={CurrentWard}>
+      <ContextProvider<CurrentWard> context={context}>
         <Layout>
           <BrowserRouter>
             <Switch<Routes> render={Switch::render(switch)} />
           </BrowserRouter>
         </Layout>
-      </ContextProvider>
+      </ContextProvider<CurrentWard>>
     }
 }
 
