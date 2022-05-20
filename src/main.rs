@@ -30,16 +30,16 @@ struct CurrentWard {
 
 #[function_component(App)]
 fn app() -> Html {
-    let context = use_ref(|| -> u8 { 0 });
+    let context = use_state(|| CurrentWard { ward_id: 0 });
 
     html! {
-      <ContextProvider<CurrentWard> context={context}>
+      <ContextProvider<UseStateHandle<CurrentWard>> context={context}>
         <Layout>
           <BrowserRouter>
             <Switch<Routes> render={Switch::render(switch)} />
           </BrowserRouter>
         </Layout>
-      </ContextProvider<CurrentWard>>
+      </ContextProvider<UseStateHandle<CurrentWard>>>
     }
 }
 
