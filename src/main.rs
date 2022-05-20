@@ -30,7 +30,7 @@ struct CurrentWard {
 
 #[function_component(App)]
 fn app() -> Html {
-    let context = use_memo(|_| CurrentWard { ward_id: 0 }, ());
+    let context = use_ref(|| -> u8 { 0 });
 
     html! {
       <ContextProvider<CurrentWard> context={context}>
