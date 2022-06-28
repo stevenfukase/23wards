@@ -684,6 +684,7 @@ dependencies = [
 name = "random-japan"
 version = "0.1.0"
 dependencies = [
+ "rand 0.8.5",
  "yew",
  "yew-octicons",
  "yew-router",

@@ -3,7 +3,8 @@ mod constants;
 mod pages;
 
 use components::parts::organisms::layout::Layout;
-use yew::{function_component, html, use_state, ContextProvider, Html};
+use rand::{thread_rng, Rng};
+use yew::{function_component, html, Callback, ContextProvider, Html, MouseEvent, use_reducer_eq};
 use yew_router::{BrowserRouter, Routable, Switch};
 
 #[derive(Clone, Routable, PartialEq)]
@@ -23,22 +24,28 @@ fn switch(routes: &Routes) -> Html {
 }
 
 #[derive(Clone, Debug, PartialEq)]
-struct CurrentWard {
-    id: u8,
+struct AppContext {
+    current_ward: u8,
+    generate: Callback<MouseEvent>,
 }
 
 #[function_component(App)]
 fn app() -> Html {
-    let context = use_state(|| CurrentWard { id: 0 });
+    let current_ward = use_reducer_eq(|| 0);
+    let generate = {
+        let mut rng = thread_rng();
+        let id = rng.gen_range(0..=22);
+        Callback::from(move |_| current_ward.set(id))
+    };
 
     html! {
-      <ContextProvider<CurrentWard> context={(*context).clone()}>
+      <ContextProvider<AppContext> context={context.clone()}>
         <Layout>
           <BrowserRouter>
             <Switch<Routes> render={Switch::render(switch)} />
           </BrowserRouter>
         </Layout>
-      </ContextProvider<CurrentWard>>
+      </ContextProvider<AppContext>>
     }
 }
 
