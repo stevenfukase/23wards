@@ -1,7 +1,10 @@
-use yew::{function_component, html};
+use yew::{function_component, html, use_context};
+use crate::CurrentWard;
 
 #[function_component(IndexPage)]
 pub fn index_page() -> Html {
+    let currentWard = use_context::<CurrentWard>();
+
     html! {
       <div class="h-screen bg-gray-100 dark:bg-gray-900">
       <div class="pt-14 h-full grid grid-rows-2 sm:grid-cols-2 sm:grid-rows-1">

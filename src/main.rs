@@ -24,12 +24,12 @@ fn switch(routes: &Routes) -> Html {
 
 #[derive(Clone, Debug, PartialEq)]
 struct CurrentWard {
-    ward_id: u8,
+    id: u8,
 }
 
 #[function_component(App)]
 fn app() -> Html {
-    let context = use_state(|| CurrentWard { ward_id: 0 });
+    let context = use_state(|| CurrentWard { id: 0 });
 
     html! {
       <ContextProvider<UseStateHandle<CurrentWard>> context={context}>
