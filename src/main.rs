@@ -32,13 +32,13 @@ fn app() -> Html {
     let context = use_state(|| CurrentWard { id: 0 });
 
     html! {
-      <ContextProvider<UseStateHandle<CurrentWard>> context={context}>
+      <ContextProvider<CurrentWard> context={(*context).clone()}>
         <Layout>
           <BrowserRouter>
             <Switch<Routes> render={Switch::render(switch)} />
           </BrowserRouter>
         </Layout>
-      </ContextProvider<UseStateHandle<CurrentWard>>>
+      </ContextProvider<CurrentWard>>
     }
 }
 
