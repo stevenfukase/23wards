@@ -19,7 +19,7 @@ pub fn layout(props: &LayoutProps) -> Html {
     html! {
       <>
         <navbar::Navbar />
-        <sidebar::SideBar is_open={is_sidebar_open} on_close={on_sidebar_close} />
+        <sidebar::SideBar is_open={*is_sidebar_open} on_close={on_sidebar_close} />
         <main>
           {props.children.clone()}
         </main>
