@@ -2,9 +2,14 @@ mod components;
 mod constants;
 mod pages;
 
+use std::rc::Rc;
+
 use components::parts::organisms::layout::Layout;
 use rand::{thread_rng, Rng};
-use yew::{function_component, html, Callback, ContextProvider, Html, MouseEvent, use_reducer_eq};
+use yew::{
+    function_component, html, use_reducer, use_reducer_eq, Callback, ContextProvider, Html,
+    MouseEvent, Reducible,
+};
 use yew_router::{BrowserRouter, Routable, Switch};
 
 #[derive(Clone, Routable, PartialEq)]
@@ -23,29 +28,50 @@ fn switch(routes: &Routes) -> Html {
     }
 }
 
+enum CounterAction {
+    Double,
+    Square,
+}
+
 #[derive(Clone, Debug, PartialEq)]
-struct AppContext {
+struct AppState {
     current_ward: u8,
-    generate: Callback<MouseEvent>,
+}
+
+impl Default for AppState {
+    fn default() -> Self {
+        Self { current_ward: 0 }
+    }
+}
+
+impl Reducible for AppState {
+    type Action = u8;
+
+    fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
+        AppState {
+            current_ward: action,
+        }
+        .into()
+    }
 }
 
 #[function_component(App)]
 fn app() -> Html {
-    let current_ward = use_reducer_eq(|| 0);
-    let generate = {
-        let mut rng = thread_rng();
-        let id = rng.gen_range(0..=22);
-        Callback::from(move |_| current_ward.set(id))
-    };
+    let app_state = use_reducer(AppState::default);
+    // let generate = {
+    //     let mut rng = thread_rng();
+    //     let id = rng.gen_range(0..=22);
+    //     Callback::from(move |_| current_ward.set(id))
+    // };
 
     html! {
-      <ContextProvider<AppContext> context={context.clone()}>
+      <ContextProvider<AppState> context={app_state}>
         <Layout>
           <BrowserRouter>
             <Switch<Routes> render={Switch::render(switch)} />
           </BrowserRouter>
         </Layout>
-      </ContextProvider<AppContext>>
+      </ContextProvider<AppState>>
     }
 }
 
