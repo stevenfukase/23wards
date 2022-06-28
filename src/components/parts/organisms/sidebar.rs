@@ -1,12 +1,12 @@
 use crate::constants::wards;
-use yew::{classes, function_component, html, Callback, Html, MouseEvent, Properties};
+use yew::{classes, function_component, html, Html, Properties};
 use yew_octicons::{Icon, IconKind};
 
 #[derive(Properties, PartialEq)]
 pub struct SidebarProps {
     #[prop_or(false)]
     pub is_open: bool,
-    pub on_close: Fn(MouseEvent),
+    // pub on_close: dyn Fn(MouseEvent),
 }
 
 #[function_component(SideBar)]
@@ -25,7 +25,7 @@ pub fn side_bar(props: &SidebarProps) -> Html {
         <button
           type="button"
           class="text-3xl focus:outline-none"
-          onclick={}
+          // onclick={}
         >
           {Icon::new(IconKind::X)}
         </button>
