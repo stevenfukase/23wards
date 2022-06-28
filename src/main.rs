@@ -3,7 +3,7 @@ mod constants;
 mod pages;
 
 use components::parts::organisms::layout::Layout;
-use yew::{function_component, html, use_state, ContextProvider, Html, UseStateHandle};
+use yew::{function_component, html, use_state, ContextProvider, Html};
 use yew_router::{BrowserRouter, Routable, Switch};
 
 #[derive(Clone, Routable, PartialEq)]
