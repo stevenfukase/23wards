@@ -1,17 +1,21 @@
 use crate::constants::site_name;
-use yew::{classes, function_component, html, Callback};
+use yew::{classes, function_component, html, Callback, MouseEvent, Properties};
 use yew_octicons::{Icon, IconKind};
 
-// TODO: onClick
+#[derive(Properties, PartialEq)]
+pub struct NavbarProps {
+    pub on_toggle: Callback<MouseEvent>,
+}
+
 #[function_component(Navbar)]
-pub fn navbar() -> Html {
+pub fn navbar(props: &NavbarProps) -> Html {
     let nav_classes = String::from("flex fixed w-full items-center justify-between px-6 h-14 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-white border-b border-gray-300 dark:border-gray-400");
     html! {
       <nav class={classes!(nav_classes)}>
         <button
           type="button"
           class="text-2xl focus:outline-none"
-          onclick={Callback::from(|_| (panic!("asdf")))}
+          onclick={&props.on_toggle}
         >
           {Icon::new(IconKind::ThreeBars)}
         </button>

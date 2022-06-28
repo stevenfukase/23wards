@@ -1,5 +1,5 @@
 use crate::constants::wards;
-use yew::{classes, function_component, html, Html, Properties, Callback, MouseEvent};
+use yew::{classes, function_component, html, Callback, Html, MouseEvent, Properties};
 use yew_octicons::{Icon, IconKind};
 
 #[derive(Properties, PartialEq)]
@@ -11,21 +11,39 @@ pub struct SidebarProps {
 
 #[function_component(SideBar)]
 pub fn side_bar(props: &SidebarProps) -> Html {
-    let sidebar_class = String::from("transform top-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border-gray-200 dark:border-gray-400 fixed h-full overflow-auto ease-in-out transition-all duration-300 px-6 py-4 border-r z-30");
-
-    // wip handle callback
-    let on_close = &props.on_close;
-
+    let sidebar_class = String::from(
+        "transform
+        top-0
+        left-0
+        w-64
+        bg-gray-100
+        dark:bg-gray-800
+        text-gray-700
+        dark:text-white
+        border-gray-200
+        dark:border-gray-400
+        fixed
+        h-full
+        overflow-auto
+        ease-in-out
+        transition-all
+        duration-300
+        px-6
+        py-4
+        border-r
+        z-30",
+    );
     html! {
-      <aside
-        // TODO: Dynamic class
-        // class={classes!(sidebar_class, props.is_open.then_some("translate-x-0"), props.!is_open.then_some("-translate-x-full" ))}
-        class={classes!(sidebar_class, props.is_open.then(|| "translate-x-0"))}
+      <aside class={classes!(sidebar_class, if props.is_open {
+            "translate-x-0"
+        } else {
+            "-translate-x-full"
+        })}
       >
         <button
           type="button"
           class="text-3xl focus:outline-none"
-          onclick={on_close}
+          onclick={&props.on_close}
         >
           {Icon::new(IconKind::X)}
         </button>
