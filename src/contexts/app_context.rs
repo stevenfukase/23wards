@@ -43,12 +43,12 @@ impl Reducible for AppState {
                 let id = generate_rand_int();
                 Self {
                     current_ward: id,
-                    disabled_wards: self.disabled_wards,
+                    disabled_wards: self.disabled_wards.to_vec(),
                 }
                 .into()
             }
             AppStateAction::Disable(id) => {
-                let disabled_wards = self.disabled_wards;
+                let mut disabled_wards = self.disabled_wards.to_vec();
                 disabled_wards.push(id);
                 Self {
                     current_ward: self.current_ward,
@@ -57,7 +57,7 @@ impl Reducible for AppState {
                 .into()
             }
             AppStateAction::Enable(id) => {
-                let disabled_wards = self.disabled_wards;
+                let mut disabled_wards = self.disabled_wards.to_vec();
                 disabled_wards.retain(|val| val != &id);
                 Self {
                     current_ward: self.current_ward,
