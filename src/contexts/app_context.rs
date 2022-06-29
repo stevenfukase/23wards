@@ -47,16 +47,24 @@ impl Reducible for AppState {
                 }
                 .into()
             }
-            AppStateAction::Disable(id) => Self {
-                current_ward: self.current_ward,
-                disabled_wards: self.disabled_wards,
+            AppStateAction::Disable(id) => {
+                let disabled_wards = self.disabled_wards;
+                disabled_wards.push(id);
+                Self {
+                    current_ward: self.current_ward,
+                    disabled_wards,
+                }
+                .into()
             }
-            .into(),
-            AppStateAction::Enable(id) => Self {
-                current_ward: self.current_ward,
-                disabled_wards: self.disabled_wards,
+            AppStateAction::Enable(id) => {
+                let disabled_wards = self.disabled_wards;
+                disabled_wards.retain(|val| val != &id);
+                Self {
+                    current_ward: self.current_ward,
+                    disabled_wards,
+                }
+                .into()
             }
-            .into(),
         }
     }
 }
