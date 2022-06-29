@@ -1,4 +1,5 @@
 mod components;
+mod contexts;
 mod constants;
 mod pages;
 
@@ -57,7 +58,7 @@ impl Reducible for AppState {
 
 #[function_component(App)]
 fn app() -> Html {
-    let app_state = use_reducer(AppState::default);
+    let app_reducer = use_reducer(AppState::default);
     // let generate = {
     //     let mut rng = thread_rng();
     //     let id = rng.gen_range(0..=22);
@@ -65,7 +66,7 @@ fn app() -> Html {
     // };
 
     html! {
-      <ContextProvider<AppState> context={app_state}>
+      <ContextProvider<AppState> context={app_reducer}>
         <Layout>
           <BrowserRouter>
             <Switch<Routes> render={Switch::render(switch)} />
