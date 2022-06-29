@@ -2,9 +2,10 @@ use crate::{
     constants::wards,
     contexts::app_context::{AppState, AppStateAction},
 };
+use web_sys::HtmlInputElement;
 use yew::{
-    classes, function_component, html, use_context, Callback, Html, MouseEvent, Properties,
-    UseReducerHandle,
+    classes, events::Event, function_component, html, use_context, Callback, Html, MouseEvent,
+    Properties, TargetCast, UseReducerHandle,
 };
 use yew_octicons::{Icon, IconKind};
 
@@ -47,9 +48,12 @@ pub fn side_bar(props: &SidebarProps) -> Html {
         }
     );
 
-    let app_context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
-    let onchange_checkbox = |val| log::info!("{:?}", val);
-    // Callback::from(move |val| app_context.dispatch(AppStateAction::Disable(val)))
+    // let app_context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
+    let onchange_checkbox = Callback::from(move |e: Event| {
+        let input = e.target_dyn_into::<HtmlInputElement>();
+        log::info!("{:?}", input)
+        // app_context.dispatch(AppStateAction::Disable(val))
+    });
 
     html! {
         <aside class={sidebar_class}>
@@ -75,7 +79,7 @@ pub fn side_bar(props: &SidebarProps) -> Html {
                                 class="mr-1 h-4 w-4"
                                 id={ward.ward}
                                 value={ward.id}
-                                onchange={onchange_checkbox}
+                                onchange={&onchange_checkbox}
                             />
                                 {ward.ward}
                             </label>

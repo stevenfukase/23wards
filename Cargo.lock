@@ -690,6 +690,7 @@ dependencies = [
  "log",
  "rand 0.8.5",
  "wasm-logger",
+ "web-sys",
  "yew",
  "yew-octicons",
  "yew-router",
