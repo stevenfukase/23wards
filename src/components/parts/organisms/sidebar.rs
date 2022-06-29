@@ -85,7 +85,7 @@ pub fn side_bar(props: &SidebarProps) -> Html {
               { "STEVEN FUKASE" }
             </a>
             <br />
-            { "with the Rust and Yew" }
+            { "with Rust and Yew" }
           </p>
         </div>
       </aside>
