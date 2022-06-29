@@ -1,5 +1,11 @@
-use crate::constants::wards;
-use yew::{classes, function_component, html, Callback, Html, MouseEvent, Properties};
+use crate::{
+    constants::wards,
+    contexts::app_context::{AppState, AppStateAction},
+};
+use yew::{
+    classes, function_component, html, use_context, Callback, Html, MouseEvent, Properties,
+    UseReducerHandle,
+};
 use yew_octicons::{Icon, IconKind};
 
 #[derive(Properties, PartialEq)]
@@ -41,7 +47,9 @@ pub fn side_bar(props: &SidebarProps) -> Html {
         }
     );
 
-    // let
+    let app_context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
+    let onchange_checkbox = |val| log::info!("{:?}", val);
+    // Callback::from(move |val| app_context.dispatch(AppStateAction::Disable(val)))
 
     html! {
         <aside class={sidebar_class}>
@@ -67,7 +75,7 @@ pub fn side_bar(props: &SidebarProps) -> Html {
                                 class="mr-1 h-4 w-4"
                                 id={ward.ward}
                                 value={ward.id}
-                                // onchange={handleCheckboxChange}
+                                onchange={onchange_checkbox}
                             />
                                 {ward.ward}
                             </label>
