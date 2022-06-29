@@ -10,3 +10,4 @@ yew = "0.19.3"
 yew-router = "0.16.0"
 yew-octicons = "0.3.1"
 rand = "0.8.5"
+getrandom = { version = "0.2", features = ["js"] }
