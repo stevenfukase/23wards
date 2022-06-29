@@ -14,9 +14,17 @@ pub struct AppState {
     pub current_ward: u8,
 }
 
+fn generate_rand_int() -> u8 {
+    let mut rng = thread_rng();
+    let id = rng.gen_range(0..=22);
+    log::info!("Generated Ward Id: {}", id);
+    id
+}
+
 impl Default for AppState {
     fn default() -> Self {
-        Self { current_ward: 0 }
+        let id = generate_rand_int();
+        Self { current_ward: id }
     }
 }
 
@@ -26,9 +34,7 @@ impl Reducible for AppState {
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
         match action {
             AppStateAction::Generate => {
-                let mut rng = thread_rng();
-                let id = rng.gen_range(0..=22);
-                log::info!("Generated Ward Id: {}", id);
+                let id = generate_rand_int();
                 AppState { current_ward: id }.into()
             }
         }
@@ -46,8 +52,8 @@ pub fn app_context(props: &AppContextProps) -> Html {
     let app_reducer = use_reducer(|| AppState::default());
 
     html! {
-      <ContextProvider<UseReducerHandle<AppState>> context={app_reducer}>
-        {props.children.clone()}
-      </ContextProvider<UseReducerHandle<AppState>>>
+        <ContextProvider<UseReducerHandle<AppState>> context={app_reducer}>
+            {props.children.clone()}
+        </ContextProvider<UseReducerHandle<AppState>>>
     }
 }
