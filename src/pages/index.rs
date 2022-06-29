@@ -1,10 +1,14 @@
-use crate::{constants::wards, AppContext};
-use yew::{function_component, html, use_context};
+use crate::{constants::wards, contexts::app_context::{AppState, AppStateAction}};
+use yew::{function_component, html, use_context, UseReducerHandle, Callback};
 
 #[function_component(IndexPage)]
 pub fn index_page() -> Html {
-    let context = use_context::<AppContext>().expect("no ctx found");
+    let context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
     let current_ward = context.current_ward as usize;
+    let on_click_generate = {
+        let context_clone = context.clone();
+        Callback::from(move |_| context_clone.dispatch(AppStateAction::Generate))
+    };
 
     html! {
       <div class="h-screen bg-gray-100 dark:bg-gray-900">
@@ -17,7 +21,7 @@ pub fn index_page() -> Html {
                 <h2 class="text-4xl dark:text-white mt-3">{wards::WARDS[current_ward].japanese}</h2>
             <button
               type="button"
-              onclick={&context.generate}
+              onclick={on_click_generate}
               class="focus:outline-none text-gray-500 dark:text-gray-400 hover:text-green-500 dark:hover:text-green-200"
             >
               {"Generate Place"}

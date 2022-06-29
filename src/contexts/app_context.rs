@@ -1,12 +1,11 @@
-use std::rc::Rc;
-
 use rand::{thread_rng, Rng};
+use std::rc::Rc;
 use yew::{
     function_component, html, use_reducer, Children, ContextProvider, Properties, Reducible,
     UseReducerHandle,
 };
 
-enum AppStateAction {
+pub enum AppStateAction {
     Generate,
 }
 
@@ -36,13 +35,13 @@ impl Reducible for AppState {
 }
 
 #[derive(Properties, PartialEq)]
-struct AppContextProps {
+pub struct AppContextProps {
     #[prop_or_default]
     pub children: Children,
 }
 
 #[function_component(AppContext)]
-fn app_context(props: &AppContextProps) -> Html {
+pub fn app_context(props: &AppContextProps) -> Html {
     let app_reducer = use_reducer(|| AppState::default());
 
     html! {
