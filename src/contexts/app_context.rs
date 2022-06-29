@@ -3,16 +3,16 @@ use std::rc::Rc;
 use rand::{thread_rng, Rng};
 use yew::{
     function_component, html, use_reducer, Children, ContextProvider, Properties, Reducible,
+    UseReducerHandle,
 };
 
-enum CounterAction {
-    Double,
-    Square,
+enum AppStateAction {
+    Generate,
 }
 
 #[derive(Clone, Debug, PartialEq)]
-struct AppState {
-    current_ward: u8,
+pub struct AppState {
+    pub current_ward: u8,
 }
 
 impl Default for AppState {
@@ -22,13 +22,16 @@ impl Default for AppState {
 }
 
 impl Reducible for AppState {
-    type Action = u8;
+    type Action = AppStateAction;
 
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
-        AppState {
-            current_ward: action,
+        match action {
+            AppStateAction::Generate => {
+                let mut rng = thread_rng();
+                let id = rng.gen_range(0..=22);
+                AppState { current_ward: id }.into()
+            }
         }
-        .into()
     }
 }
 
@@ -40,16 +43,11 @@ struct AppContextProps {
 
 #[function_component(AppContext)]
 fn app_context(props: &AppContextProps) -> Html {
-    let app_reducer = use_reducer(AppState::default);
-    // let generate = {
-    //     let mut rng = thread_rng();
-    //     let id = rng.gen_range(0..=22);
-    //     Callback::from(move |_| current_ward.set(id))
-    // };
+    let app_reducer = use_reducer(|| AppState::default());
 
     html! {
-      <ContextProvider<AppState> context={app_reducer}>
+      <ContextProvider<UseReducerHandle<AppState>> context={app_reducer}>
         {props.children.clone()}
-      </ContextProvider<AppState>>
+      </ContextProvider<UseReducerHandle<AppState>>>
     }
 }
