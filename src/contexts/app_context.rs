@@ -28,6 +28,7 @@ impl Reducible for AppState {
             AppStateAction::Generate => {
                 let mut rng = thread_rng();
                 let id = rng.gen_range(0..=22);
+                log::info!("Generated Ward Id: {}", id);
                 AppState { current_ward: id }.into()
             }
         }
