@@ -7,11 +7,14 @@ use yew::{
 
 pub enum AppStateAction {
     Generate,
+    Disable(u8),
+    Enable(u8),
 }
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct AppState {
     pub current_ward: u8,
+    pub disabled_wards: Vec<u8>,
 }
 
 fn generate_rand_int() -> u8 {
@@ -24,7 +27,10 @@ fn generate_rand_int() -> u8 {
 impl Default for AppState {
     fn default() -> Self {
         let id = generate_rand_int();
-        Self { current_ward: id }
+        Self {
+            current_ward: id,
+            disabled_wards: vec![],
+        }
     }
 }
 
@@ -35,8 +41,22 @@ impl Reducible for AppState {
         match action {
             AppStateAction::Generate => {
                 let id = generate_rand_int();
-                AppState { current_ward: id }.into()
+                Self {
+                    current_ward: id,
+                    disabled_wards: self.disabled_wards,
+                }
+                .into()
             }
+            AppStateAction::Disable(id) => Self {
+                current_ward: self.current_ward,
+                disabled_wards: self.disabled_wards,
+            }
+            .into(),
+            AppStateAction::Enable(id) => Self {
+                current_ward: self.current_ward,
+                disabled_wards: self.disabled_wards,
+            }
+            .into(),
         }
     }
 }
