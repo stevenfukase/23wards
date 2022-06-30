@@ -2,7 +2,7 @@ use crate::{
     constants::wards,
     contexts::app_context::{AppState, AppStateAction},
 };
-use web_sys::HtmlInputElement;
+use web_sys::{HtmlInputElement};
 use yew::{
     classes, events::Event, function_component, html, use_context, Callback, Html, MouseEvent,
     Properties, TargetCast, UseReducerHandle,
@@ -50,7 +50,7 @@ pub fn side_bar(props: &SidebarProps) -> Html {
 
     // let app_context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
     let onchange_checkbox = Callback::from(move |e: Event| {
-        let input = e.target_dyn_into::<HtmlInputElement>();
+        let input = e.target_dyn_into::<HtmlInputElement>().unwrap();
         log::info!("{:?}", input)
         // app_context.dispatch(AppStateAction::Disable(val))
     });
