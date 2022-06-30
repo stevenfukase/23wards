@@ -38,36 +38,22 @@ impl Reducible for AppState {
     type Action = AppStateAction;
 
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
-        let new_state = match action {
+        let mut new_state = Self::clone(&self);
+
+        match action {
             AppStateAction::Generate => {
                 let id = generate_rand_int();
-                Self {
-                    current_ward: id,
-                    disabled_wards: self.disabled_wards.to_vec(),
-                }
-                .into()
+                new_state.current_ward = id;
             }
             AppStateAction::Disable(id) => {
-                let mut disabled_wards = self.disabled_wards.to_vec();
-                disabled_wards.push(id);
-                Self {
-                    current_ward: self.current_ward,
-                    disabled_wards,
-                }
-                .into()
+                new_state.disabled_wards.push(id);
             }
             AppStateAction::Enable(id) => {
-                let mut disabled_wards = self.disabled_wards.to_vec();
-                disabled_wards.retain(|val| val != &id);
-                Self {
-                    current_ward: self.current_ward,
-                    disabled_wards,
-                }
-                .into()
+                new_state.disabled_wards.retain(|val| val != &id);
             }
         };
         log::info!("App State: {:#?}", new_state);
-        new_state
+        new_state.into()
     }
 }
 
