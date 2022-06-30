@@ -2,7 +2,7 @@ use crate::{
     constants::wards,
     contexts::app_context::{AppState, AppStateAction},
 };
-use web_sys::{HtmlInputElement};
+use web_sys::HtmlInputElement;
 use yew::{
     classes, events::Event, function_component, html, use_context, Callback, Html, MouseEvent,
     Properties, TargetCast, UseReducerHandle,
@@ -48,11 +48,14 @@ pub fn side_bar(props: &SidebarProps) -> Html {
         }
     );
 
-    // let app_context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
-    let onchange_checkbox = Callback::from(move |e: Event| {
+    let app_context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
+    let onchange_checkbox = Callback::from(|e: Event| {
         let input = e.target_dyn_into::<HtmlInputElement>().unwrap();
-        log::info!("{:?}", input)
-        // app_context.dispatch(AppStateAction::Disable(val))
+        let id = input.value().parse().unwrap();
+        match input.checked() {
+            true => app_context.dispatch(AppStateAction::Disable(id)),
+            false => app_context.dispatch(AppStateAction::Enable(id)),
+        }
     });
 
     html! {
@@ -74,13 +77,14 @@ pub fn side_bar(props: &SidebarProps) -> Html {
                                 htmlFor={ward.ward}
                                 class="inline-flex items-center text-gray-800 dark:text-gray-200"
                             >
-                            <input
-                                type="checkbox"
-                                class="mr-1 h-4 w-4"
-                                id={ward.ward}
-                                value={ward.id}
-                                onchange={&onchange_checkbox}
-                            />
+                                <input
+                                    type="checkbox"
+                                    class="mr-1 h-4 w-4"
+                                    id={ward.ward}
+                                    value={ward.id.to_string()}
+                                    onchange={&onchange_checkbox}
+                                    checked={app_context.disabled_wards.contains(&ward.id)}
+                                />
                                 {ward.ward}
                             </label>
                         </div>
