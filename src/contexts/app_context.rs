@@ -38,7 +38,7 @@ impl Reducible for AppState {
     type Action = AppStateAction;
 
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
-        match action {
+        let new_state = match action {
             AppStateAction::Generate => {
                 let id = generate_rand_int();
                 Self {
@@ -65,7 +65,9 @@ impl Reducible for AppState {
                 }
                 .into()
             }
-        }
+        };
+        log::info!("App State: {:#?}", new_state);
+        new_state
     }
 }
 
