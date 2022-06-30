@@ -49,14 +49,17 @@ pub fn side_bar(props: &SidebarProps) -> Html {
     );
 
     let app_context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
-    let onchange_checkbox = Callback::from(|e: Event| {
-        let input = e.target_dyn_into::<HtmlInputElement>().unwrap();
-        let id = input.value().parse().unwrap();
-        match input.checked() {
-            true => app_context.dispatch(AppStateAction::Disable(id)),
-            false => app_context.dispatch(AppStateAction::Enable(id)),
-        }
-    });
+    let onchange_checkbox = {
+        let context = app_context.clone();
+        Callback::from(move |e: Event| {
+            let input = e.target_dyn_into::<HtmlInputElement>().unwrap();
+            let id = input.value().parse().unwrap();
+            match input.checked() {
+                true => context.dispatch(AppStateAction::Disable(id)),
+                false => context.dispatch(AppStateAction::Enable(id)),
+            }
+        })
+    };
 
     html! {
         <aside class={sidebar_class}>
@@ -70,7 +73,8 @@ pub fn side_bar(props: &SidebarProps) -> Html {
             <div>
                 <h2 class="mt-3 text-2xl font-bold">{ "Settings" }</h2>
                 <h3 class="mt-3 text-lg font-bold">{ "Exclude:" }</h3>
-                {wards::WARDS.into_iter().map(|ward| {
+                {wards::WARDS.into_iter().map(move|ward| {
+                    let context = app_context.clone();
                     html! {
                         <div>
                             <label
@@ -83,7 +87,7 @@ pub fn side_bar(props: &SidebarProps) -> Html {
                                     id={ward.ward}
                                     value={ward.id.to_string()}
                                     onchange={&onchange_checkbox}
-                                    checked={app_context.disabled_wards.contains(&ward.id)}
+                                    checked={context.disabled_wards.contains(&ward.id)}
                                 />
                                 {ward.ward}
                             </label>
