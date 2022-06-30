@@ -39,7 +39,6 @@ impl Reducible for AppState {
 
     fn reduce(self: Rc<Self>, action: Self::Action) -> Rc<Self> {
         let mut new_state = Self::clone(&self);
-
         match action {
             AppStateAction::Generate => {
                 let id = generate_rand_int();
@@ -52,6 +51,7 @@ impl Reducible for AppState {
                 new_state.disabled_wards.retain(|val| val != &id);
             }
         };
+
         log::info!("App State: {:#?}", new_state);
         new_state.into()
     }
