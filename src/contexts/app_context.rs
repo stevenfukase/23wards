@@ -44,12 +44,12 @@ impl Reducible for AppState {
         let mut new_state = Self::clone(&self);
         match action {
             AppStateAction::Generate => {
-                let rand_int = generate_rand_int(Some(self.disabled_wards.len() as u8));
-                let enabled_wards = &WARDS
+                let rand_int = generate_rand_int(Some(self.disabled_wards.len() as u8)) as usize;
+                let enabled_ward_ids = (0..=22)
                     .into_iter()
-                    .filter(|val| self.disabled_wards.contains(&val.id))
-                    .collect::<u8>();
-                new_state.current_ward = enabled_wards[rand_int];
+                    .filter(|val| self.disabled_wards.contains(&val))
+                    .collect::<Vec<u8>>();
+                new_state.current_ward = enabled_ward_ids[rand_int];
             }
             AppStateAction::Disable(id) => {
                 new_state.disabled_wards.push(id);
