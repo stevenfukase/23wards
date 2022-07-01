@@ -5,6 +5,8 @@ use yew::{
     UseReducerHandle,
 };
 
+use crate::constants::wards::WARDS;
+
 pub enum AppStateAction {
     Generate,
     Disable(u8),
@@ -17,16 +19,17 @@ pub struct AppState {
     pub disabled_wards: Vec<u8>,
 }
 
-fn generate_rand_int() -> u8 {
-    let mut rng = thread_rng();
-    let id = rng.gen_range(0..=22);
+fn generate_rand_int(range: Option<u8>) -> u8 {
+    let range = range.unwrap_or(22);
+    let mut thread = thread_rng();
+    let id = thread.gen_range(0..=range);
     log::info!("Generated Ward Id: {}", id);
     id
 }
 
 impl Default for AppState {
     fn default() -> Self {
-        let id = generate_rand_int();
+        let id = generate_rand_int(None);
         Self {
             current_ward: id,
             disabled_wards: vec![],
@@ -41,8 +44,12 @@ impl Reducible for AppState {
         let mut new_state = Self::clone(&self);
         match action {
             AppStateAction::Generate => {
-                let id = generate_rand_int();
-                new_state.current_ward = id;
+                let rand_int = generate_rand_int(Some(self.disabled_wards.len() as u8));
+                let enabled_wards = &WARDS
+                    .into_iter()
+                    .filter(|val| self.disabled_wards.contains(&val.id))
+                    .collect::<u8>();
+                new_state.current_ward = enabled_wards[rand_int];
             }
             AppStateAction::Disable(id) => {
                 new_state.disabled_wards.push(id);
