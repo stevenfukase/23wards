@@ -9,8 +9,7 @@ pub fn index_page() -> Html {
     let context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
     let current_ward = context.current_ward as usize;
     let on_click_generate = {
-        let context_clone = context.clone();
-        Callback::from(move |_| context_clone.dispatch(AppStateAction::Generate))
+        Callback::from(move |_| context.dispatch(AppStateAction::Generate))
     };
 
     html! {
