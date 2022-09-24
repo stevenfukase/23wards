@@ -41,7 +41,7 @@ impl Reducible for AppState {
                 }
                 let enabled_ward_ids = (0..=22)
                     .into_iter()
-                    .filter(|val| !self.disabled_wards.contains(&val))
+                    .filter(|val| !self.disabled_wards.contains(val))
                     .collect::<Vec<u8>>();
                 let rand_int = generate_rand_int(Some(enabled_ward_ids.len() as u8 - 1));
                 new_state.current_ward = enabled_ward_ids[rand_int as usize];

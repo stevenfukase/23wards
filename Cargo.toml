@@ -1,6 +1,7 @@
 [package]
 name = "random-japan"
 version = "0.1.0"
+authors = ["stevenfukase <fukasesteven@gmail.com>"]
 edition = "2021"
 
 [dependencies]
