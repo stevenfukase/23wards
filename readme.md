@@ -4,4 +4,4 @@ trunk serve
 
 ## Watch tailwind
 
-tailwindcss -i ./styles.scss -o ./styles.css --watch
+npx tailwindcss -i ./src/styles.scss -o ./src/styles.css --watch
