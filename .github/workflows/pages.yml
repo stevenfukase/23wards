@@ -35,10 +35,9 @@ jobs:
           echo "cat config.toml"
           cat config.toml
 
-      - name: Trunk Check
-        uses: trunk-io/trunk-action@v1
+      - uses: jetli/trunk-action@v0.1.0
         with:
-          cache: false
+          version: "latest"
 
       - name: Build
         run: trunk build
