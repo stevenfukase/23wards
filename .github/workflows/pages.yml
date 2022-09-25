@@ -39,6 +39,9 @@ jobs:
         with:
           version: "latest"
 
+      - name: Add wasm target
+        run: rustup target add wasm32-unknown-unknown
+
       - name: Build
         run: trunk build
 
