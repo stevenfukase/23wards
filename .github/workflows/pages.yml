@@ -35,6 +35,9 @@ jobs:
           echo "cat config.toml"
           cat config.toml
 
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@v1
+
       - name: Build
         run: trunk build
 
