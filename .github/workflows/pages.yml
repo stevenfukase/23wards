@@ -37,6 +37,8 @@ jobs:
 
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
+        with:
+          cache: false
 
       - name: Build
         run: trunk build
