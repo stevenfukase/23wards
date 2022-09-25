@@ -1,5 +1,5 @@
 [package]
-name = "random-japan"
+name = "wards23"  # name cannot start with a digit
 version = "0.1.0"
 authors = ["stevenfukase <fukasesteven@gmail.com>"]
 edition = "2021"

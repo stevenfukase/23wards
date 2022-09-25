@@ -1,5 +1,5 @@
 use crate::{
-    constants::wards,
+    constants::{site_name::SITE_NAME, wards},
     contexts::app_context::{AppState, AppStateAction},
 };
 use yew::{function_component, html, use_context, Callback, UseReducerHandle};
@@ -8,9 +8,7 @@ use yew::{function_component, html, use_context, Callback, UseReducerHandle};
 pub fn index_page() -> Html {
     let context = use_context::<UseReducerHandle<AppState>>().expect("no ctx found");
     let current_ward = context.current_ward as usize;
-    let on_click_generate = {
-        Callback::from(move |_| context.dispatch(AppStateAction::Generate))
-    };
+    let on_click_generate = { Callback::from(move |_| context.dispatch(AppStateAction::Generate)) };
 
     html! {
         <div class="h-screen bg-gray-100 dark:bg-gray-900">
@@ -24,7 +22,7 @@ pub fn index_page() -> Html {
                     />
                 </div>
                 <div class="place-self-center flex flex-col items-center transform sm:-translate-y-12 sm:order-first">
-                    <h1 class="dark:text-white">{"Welcome to Tokyo Ward Generator"}</h1>
+                    <h1 class="dark:text-white">{format!("Welcome to {}", SITE_NAME)}</h1>
                     <h1 class="text-6xl dark:text-white">{wards::WARDS[current_ward].ward}</h1>
                     <h2 class="text-4xl dark:text-white mt-3">{wards::WARDS[current_ward].japanese}</h2>
                     <button
