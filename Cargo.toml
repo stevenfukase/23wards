@@ -1,8 +1,11 @@
 [package]
 name = "wards23"  # name cannot start with a digit
-version = "0.1.0"
+version = "2.0.0"
 authors = ["stevenfukase <fukasesteven@gmail.com>"]
 edition = "2021"
+description = "Random Tokyo ward"
+readme = "readme.md"
+repository = "https://github.com/stevenfukase/23wards"
 
 [dependencies]
 yew = "0.19.3"
