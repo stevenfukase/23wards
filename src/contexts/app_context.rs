@@ -66,7 +66,7 @@ pub struct AppContextProps {
 
 #[function_component(AppContext)]
 pub fn app_context(props: &AppContextProps) -> Html {
-    let app_reducer = use_reducer(|| AppState::default());
+    let app_reducer = use_reducer(AppState::default);
 
     html! {
         <ContextProvider<UseReducerHandle<AppState>> context={app_reducer}>

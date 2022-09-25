@@ -1,1 +1,1 @@
-pub const SITE_NAME: &str = "Tokyo Ward Generator";
+pub const SITE_NAME: &str = "23 wards";
