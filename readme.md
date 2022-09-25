@@ -10,11 +10,13 @@
 ## 開発環境立ち上げ
 
 1. Tailwind CSSのbuild/変更監視
-  ```shell
-  ```
 
-trunk serve
+    ```shell
+    npx tailwindcss -i ./styles.scss -o ./styles.css --watch
+    ```
 
-## Watch tailwind
+1. Yewのbuild/変更監視
 
-npx tailwindcss -i ./styles.scss -o ./styles.css --watch
+    ```shell
+    trunk serve
+    ``
