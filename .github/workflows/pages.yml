@@ -24,7 +24,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Put dummy env vars
+
+      - name: Put env vars
         run: |
           cd ./.cargo
           cat <<EOF > config.toml
@@ -34,9 +35,8 @@ jobs:
           echo "cat config.toml"
           cat config.toml
 
-      - name: Build Docs
-        run: |
-          cargo doc --no-deps
+      - name: Build
+        run: trunk build
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
@@ -44,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "./target/doc"
+          path: "./dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
