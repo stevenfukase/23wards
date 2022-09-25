@@ -9,7 +9,7 @@
 
 ## 開発環境立ち上げ
 
-1. `config.example.toml`を参考に`.cargo/config.toml`に`MAPS_API_KEY`を追加する
+1. `config.example.toml`を参考に`config.toml`を作成し`MAPS_API_KEY`を追加する
 
 2. Tailwind CSSのbuild/変更監視
 
