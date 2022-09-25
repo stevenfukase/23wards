@@ -17,7 +17,7 @@ pub fn index_page() -> Html {
                     <iframe
                         title="map"
                         class="h-full w-full filter dark:invert"
-                        src={format!("https://www.google.com/maps/embed/v1/place?key=AIzaSyDjd3XyCKvPTWNeIKtEWJpUCDW874-XBvM&q={}", wards::WARDS[current_ward].ward)}
+                        src={format!("https://www.google.com/maps/embed/v1/place?key={}&q={}", env!("MAPS_API_KEY"), wards::WARDS[current_ward].ward)}
                         allowFullScreen="true"
                     />
                 </div>
